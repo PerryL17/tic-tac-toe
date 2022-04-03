@@ -1,0 +1,19 @@
+.board {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: auto;
+  justify-content: center;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+.square {
+  display: grid;
+  align-items: center;
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+  background-color: cadetblue;
+  height: 100px;
+  width: 100px;
+}
