@@ -29,7 +29,7 @@ function Board({ currentPlayer, setNextPlayer }) {
 
   return (
     <div className="board">
-      {initialBoard.map((item) => (
+      {board.map((item) => (
         <Square
           onUpdateBoard={updateBoard}
           key={item.id}
