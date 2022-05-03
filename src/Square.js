@@ -4,7 +4,7 @@ function Square({ squareItem, currentPlayer, setNextPlayer, onUpdateBoard }) {
   const handleOnClick = (event, squareItem) => {
     event.preventDefault();
     /*change player*/
-    console.log(squareItem);
+
     if (squareItem.occupiedBy === "") {
       onUpdateBoard(squareItem.id, currentPlayer.letter);
       if (currentPlayer.player === "Player-1") {
