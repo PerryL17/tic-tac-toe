@@ -1,6 +1,29 @@
-export const checkBoard = (playerLetter, board) => {
+export const checkBoard = (board) => {
   //check row
-  console.log("HI");
+  checkRows("X", board);
+  checkRows("O", board);
+
+  //check column
+  checkColumns("X", board);
+  checkColumns("O", board);
+
+  //check diagonal
+  checkDiagonal("X", board);
+  checkDiagonal("O", board);
+};
+const filterBoardByIds = (idOne, idTwo, idThree, board) => {
+  return board.filter(
+    (square) =>
+      square.id === idOne || square.id === idTwo || square.id === idThree
+  );
+};
+const filterMatch = (direction, playerLetter) => {
+  return (
+    direction.filter((square) => square.occupiedBy === playerLetter).length ===
+    3
+  );
+};
+const checkRows = (playerLetter, board) => {
   const rowOne = filterBoardByIds(1, 2, 3, board);
   const rowTwo = filterBoardByIds(4, 5, 6, board);
   const rowThree = filterBoardByIds(7, 8, 9, board);
@@ -11,11 +34,11 @@ export const checkBoard = (playerLetter, board) => {
 
   if (isRowOneMatch || isRowTwoMatch || isRowThreeMatch) {
     alert(`${playerLetter} Wins!`);
+    return true;
   }
-  console.log(isRowOneMatch);
-  console.log(board);
-  console.log(playerLetter);
-  //check column
+  return false;
+};
+const checkColumns = (playerLetter, board) => {
   const columnOne = filterBoardByIds(1, 4, 7, board);
   const columnTwo = filterBoardByIds(2, 5, 8, board);
   const columnThree = filterBoardByIds(3, 6, 9, board);
@@ -26,8 +49,11 @@ export const checkBoard = (playerLetter, board) => {
 
   if (isColumnOneMatch || isColumnTwoMatch || isColumnThreeMatch) {
     alert(`${playerLetter} Wins!`);
+    return true;
   }
-  //check diagonal
+  return false;
+};
+const checkDiagonal = (playerLetter, board) => {
   const diagonalOne = filterBoardByIds(1, 5, 8, board);
   const diagonalTwo = filterBoardByIds(3, 5, 7, board);
 
@@ -36,17 +62,7 @@ export const checkBoard = (playerLetter, board) => {
 
   if (isDiagonalOneMatch || isDiagonalTwoMatch) {
     alert(`${playerLetter} Wins!`);
+    return true;
   }
-};
-const filterBoardByIds = (idOne, idTwo, idThree, board) => {
-  board.filter(
-    (square) =>
-      square.id === idOne || square.id === idTwo || square.id === idThree
-  );
-};
-const filterMatch = (direction, playerLetter) => {
-  return (
-    direction.filter((square) => square.occupiedBy === playerLetter).length ===
-    3
-  );
+  return false;
 };
