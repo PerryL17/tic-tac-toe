@@ -1,18 +1,14 @@
 import React from "react";
 
-function Square({ squareItem, currentPlayer, setNextPlayer, onUpdateBoard }) {
+function Square({ squareItem, gameState, updateGameState }) {
   const handleOnClick = (event, squareItem) => {
     event.preventDefault();
-    /*change player*/
-
-    if (squareItem.occupiedBy === "") {
-      onUpdateBoard(squareItem.id, currentPlayer.letter);
-      if (currentPlayer.player === "Player-1") {
-        return setNextPlayer({ player: "Player-2", letter: "O" });
-      } else {
-        return setNextPlayer({ player: "Player-1", letter: "X" });
-      }
-    }
+    //change player and mark board
+    updateGameState.markSquareAsOccupied(
+      squareItem.id,
+      gameState.currentPlayer.letter
+    );
+    return;
   };
   return (
     <div className="square" onClick={(e) => handleOnClick(e, squareItem)}>
